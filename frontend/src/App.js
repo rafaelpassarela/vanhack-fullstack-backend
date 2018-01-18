@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './styles/App.css';
 import 'isomorphic-fetch';
+import Button from 'react-bootstrap/lib/Button';
+import Alert from 'react-bootstrap/lib/Alert';
+import MarkdownEditor from './components/markdown.editor.view';
 
 class App extends Component {
 
@@ -89,7 +92,9 @@ class App extends Component {
                 </header>
                 <p className="App-intro">To get started, edit <code>src/App.js</code> and save to reload.</p>
                 <hr />
-                <button onClick={this.clickHandler}>Test API</button> <br />
+                <Alert>Test of Editor - Another Comp.</Alert>
+                <MarkdownEditor/>
+                <Button bsStyle="primary" onClick={this.clickHandler}>Test API</Button> <br />
                 Return Values: <p>{contents}</p>
             </div>
         );
