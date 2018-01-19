@@ -38,7 +38,6 @@
     <Content Include="src\components\test.api.component.js" />
     <Content Include="src\styles\App.css" />
     <Content Include="src\styles\index.css" />
-    <Content Include="src\logo.svg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\" />
@@ -49,6 +48,7 @@
   <ItemGroup>
     <Compile Include="src\App.js" />
     <Compile Include="src\App.test.js" />
+    <Compile Include="src\components\home.header.view.js" />
     <Compile Include="src\components\markdown.editor.view.js">
       <SubType>Code</SubType>
     </Compile>

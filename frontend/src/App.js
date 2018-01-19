@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+
 import './styles/App.css';
 import 'isomorphic-fetch';
-import MarkdownEditor from './components/markdown.editor.view';
+
+import HomeHeader from './components/home.header.view';
 import NavbarMain from './components/navbar.main';
+
+import MarkdownEditor from './components/markdown.editor.view';
 import TestApiClass from './components/test.api.component';
 
 class App extends Component {
@@ -14,17 +18,22 @@ class App extends Component {
 
     render() {
         return (
-            <div className="App">
-                <NavbarMain />
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">Welcome to React</h1>
-                </header>
-                
-                <MarkdownEditor text="# Test by prop" />
+            <Router>
+                <div className="App">
+                    <NavbarMain />
+                    <HomeHeader />
+                    <Link to="/test">Api Test</Link>
+                    <Link to="/">Home</Link>
+                    <MarkdownEditor text="# Test by prop" />
 
-                <TestApiClass autoLoad={false}/>               
-            </div>
+                    <Route exact path="/" render={() => (
+                        <h1>You're at Home</h1>
+                    )} />
+                    <Route path="/test" component={TestApiClass} />
+
+                    <TestApiClass autoLoad={false} />
+                </div>
+            </Router>
         );
     }
 }

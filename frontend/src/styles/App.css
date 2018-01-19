@@ -3,7 +3,7 @@
 }*/
 
 .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    /*animation: App-logo-spin infinite 20s linear;*/
     height: 80px;
 }
 
@@ -16,8 +16,15 @@
     /*border-radius: 4px;*/
 }
 
+.center-block {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .App-title {
-    font-size: 1.5em;
+    font-size: 1.2em;
+    text-align: center;
 }
 
 .App-intro {
