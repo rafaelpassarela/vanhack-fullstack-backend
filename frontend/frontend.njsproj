@@ -35,6 +35,7 @@
     <Content Include="public\index.html" />
     <Content Include="public\manifest.json" />
     <Content Include="README.md" />
+    <Content Include="src\components\test.api.component.js" />
     <Content Include="src\styles\App.css" />
     <Content Include="src\styles\index.css" />
     <Content Include="src\logo.svg" />
