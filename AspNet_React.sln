@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend_AspNet", "Backend_AspNet\Backend_AspNet.csproj", "{31F0ED01-3949-40CB-9299-25A4AB1B6EE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackendAspNet", "BackendAspNet\BackendAspNet.csproj", "{31F0ED01-3949-40CB-9299-25A4AB1B6EE8}"
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "frontend", "frontend\frontend.njsproj", "{B8975FA7-97CF-47A2-97C8-951CF955FA94}"
 EndProject
