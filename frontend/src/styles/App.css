@@ -1,6 +1,6 @@
-/*.App {
+.din-content {
     margin: 10px
-}*/
+}
 
 .App-logo {
     /*animation: App-logo-spin infinite 20s linear;*/
@@ -42,7 +42,7 @@
 }
 
 .rmd-container {
-    width: 600px;
+    /*width: 600px;*/
     border: 1px solid rgba(0, 0, 0, .125) !default;
     padding: 8px;
     margin: 10px auto;

@@ -24,14 +24,16 @@ class App extends Component {
                     <HomeHeader />
                     <Link to="/test">Api Test</Link>
                     <Link to="/">Home</Link>
-                    <MarkdownEditor text="# Test by prop" />
+                    <div className="din-content">
+                        <MarkdownEditor text="# Test by prop" />
 
-                    <Route exact path="/" render={() => (
-                        <h1>You're at Home</h1>
-                    )} />
-                    <Route path="/test" component={TestApiClass} />
+                        <Route exact path="/" render={() => (
+                            <h1>You're at Home</h1>
+                        )} />
+                        <Route path="/test" component={TestApiClass} />
 
-                    <TestApiClass autoLoad={false} />
+                        <TestApiClass autoLoad={false} />
+                    </div>
                 </div>
             </Router>
         );

@@ -10,7 +10,6 @@ class NavbarMain extends Component {
     //    super(props);
     //}
 
-
     render() {
         const navbarInstance =
             <Navbar inverse collapseOnSelect fixedTop>

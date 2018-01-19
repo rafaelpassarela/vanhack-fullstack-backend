@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 
 class HomeHeader extends Component {
-    //<img src={logo} className="App-logo" alt="logo" />
+    
     render() {
         return (
             <header className="App-header">
