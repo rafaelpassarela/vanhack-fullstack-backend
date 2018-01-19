@@ -19,3 +19,7 @@ AspNet_React
 * Change the run target to `AspNet_React`
 * hit F5 and it's done
 * Listening on `localhost:54163
+
+
+dotnet ef database update
+https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro
