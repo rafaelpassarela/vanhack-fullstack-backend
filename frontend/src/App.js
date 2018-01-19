@@ -5,14 +5,16 @@ import './styles/App.css';
 import 'isomorphic-fetch';
 import Button from 'react-bootstrap/lib/Button';
 import Alert from 'react-bootstrap/lib/Alert';
+import Badge from 'react-bootstrap/lib/Badge';
 import MarkdownEditor from './components/markdown.editor.view';
+
 
 class App extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            values: ['None'],
+            values: undefined,
             loading: false
         };
 
@@ -55,6 +57,7 @@ class App extends Component {
             .then(
             (result) => {
                 this.setState({
+                    error: undefined,
                     loading: false,
                     values: result
                 });
@@ -84,6 +87,8 @@ class App extends Component {
                 : this.getValueList(values); // FetchData.renderForecastsTable(this.state.forecasts);
         }
 
+        const badge = values ? <span><Badge>{values.length}</Badge><br /></span> : '';
+
         return (
             <div className="App">
                 <header className="App-header">
@@ -95,7 +100,7 @@ class App extends Component {
                 <Alert>Test of Editor - Another Comp.</Alert>
                 <MarkdownEditor/>
                 <Button bsStyle="primary" onClick={this.clickHandler}>Test API</Button> <br />
-                Return Values: <p>{contents}</p>
+                Return Values: {badge} <p>{contents}</p>
             </div>
         );
     }
