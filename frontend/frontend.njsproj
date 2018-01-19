@@ -51,6 +51,7 @@
     <Compile Include="src\components\markdown.editor.view.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="src\components\navbar.main.js" />
     <Compile Include="src\index.js" />
     <Compile Include="src\registerServiceWorker.js" />
   </ItemGroup>

@@ -4,9 +4,9 @@ import logo from './logo.svg';
 import './styles/App.css';
 import 'isomorphic-fetch';
 import Button from 'react-bootstrap/lib/Button';
-import Alert from 'react-bootstrap/lib/Alert';
 import Badge from 'react-bootstrap/lib/Badge';
 import MarkdownEditor from './components/markdown.editor.view';
+import NavbarMain from './components/navbar.main';
 
 
 class App extends Component {
@@ -62,9 +62,6 @@ class App extends Component {
                     values: result
                 });
             },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
             (error) => {
                 this.setState({
                     loading: false,
@@ -84,21 +81,20 @@ class App extends Component {
         } else {
             contents = loading
                 ? <em>Loading...</em>
-                : this.getValueList(values); // FetchData.renderForecastsTable(this.state.forecasts);
+                : this.getValueList(values);
         }
 
         const badge = values ? <span><Badge>{values.length}</Badge><br /></span> : '';
 
         return (
             <div className="App">
+                <NavbarMain />
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
                     <h1 className="App-title">Welcome to React</h1>
                 </header>
-                <p className="App-intro">To get started, edit <code>src/App.js</code> and save to reload.</p>
-                <hr />
-                <Alert>Test of Editor - Another Comp.</Alert>
-                <MarkdownEditor/>
+                
+                <MarkdownEditor text="# Test by prop"/>
                 <Button bsStyle="primary" onClick={this.clickHandler}>Test API</Button> <br />
                 Return Values: {badge} <p>{contents}</p>
             </div>

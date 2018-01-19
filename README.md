@@ -1,6 +1,12 @@
 AspNet_React
 
-Requirements: ASP.Net Core 2.0
+## Table of Contents
+- [Requirements](#requirements)
+- [Frontend](#frontend)
+- [Backend](#backend)
+
+## Requirements
+* ASP.Net Core 2.0
 
 ## Frontend
 * Clone this git repo
