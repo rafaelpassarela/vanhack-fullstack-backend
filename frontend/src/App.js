@@ -21,9 +21,8 @@ class App extends Component {
                     <NavbarMain />
                     <HomeHeader />
                     
-                    <RouterHolder />
-
                     <div className="din-content">
+                        <RouterHolder />
                         <MarkdownEditor text="# Test by prop" />
                     </div>
                 </div>
