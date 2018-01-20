@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-
+import { BrowserRouter as Router } from 'react-router-dom';
 import './styles/App.css';
 import 'isomorphic-fetch';
 
 import HomeHeader from './components/home.header.view';
 import NavbarMain from './components/navbar.main';
-
+import RouterHolder from './components/router.place.holder'
 import MarkdownEditor from './components/markdown.editor.view';
-import TestApiClass from './components/test.api.component';
 
 class App extends Component {
 
@@ -22,17 +20,11 @@ class App extends Component {
                 <div className="App">
                     <NavbarMain />
                     <HomeHeader />
-                    <Link to="/test">Api Test</Link>
-                    <Link to="/">Home</Link>
+                    
+                    <RouterHolder />
+
                     <div className="din-content">
                         <MarkdownEditor text="# Test by prop" />
-
-                        <Route exact path="/" render={() => (
-                            <h1>You're at Home</h1>
-                        )} />
-                        <Route path="/test" component={TestApiClass} />
-
-                        <TestApiClass autoLoad={false} />
                     </div>
                 </div>
             </Router>

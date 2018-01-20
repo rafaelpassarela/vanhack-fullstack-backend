@@ -7,6 +7,7 @@ AspNet_React
 
 ## Requirements
 * ASP.Net Core 2.0
+* SQL Server Express `(localhost\SQLEXPRESS)`
 
 ## Frontend
 * Clone this git repo
@@ -19,7 +20,3 @@ AspNet_React
 * Change the run target to `AspNet_React`
 * hit F5 and it's done
 * Listening on `localhost:54163
-
-
-dotnet ef database update
-https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro

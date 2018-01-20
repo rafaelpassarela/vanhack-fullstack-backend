@@ -74,7 +74,7 @@ class TestApiClass extends Component {
 
         return (
             <div>
-                <h1>Simple API Test</h1>;
+                <h1>Simple API Test</h1>
                 <Button bsStyle="primary" onClick={this.clickHandler}>Test API</Button> <br />
                 Return Values: {badge} <p>{contents}</p>
             </div>

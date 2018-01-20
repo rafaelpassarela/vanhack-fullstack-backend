@@ -41,6 +41,14 @@
     }
 }
 
+.navbar-brand {
+    float: left;
+    height: 50px;
+    padding: 3px 0px;
+    font-size: 18px;
+    line-height: 20px;
+}
+
 .rmd-container {
     /*width: 600px;*/
     border: 1px solid rgba(0, 0, 0, .125) !default;

@@ -4,29 +4,26 @@ import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import NavDropdown from 'react-bootstrap/lib/NavDropdown';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
+import NavbarItem from './navbar.item';
 
 class NavbarMain extends Component {
-    //constructor(props) {
-    //    super(props);
-    //}
 
     render() {
         const navbarInstance =
             <Navbar inverse collapseOnSelect fixedTop>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a href="/">Vanhack - Fullstack/Backend</a>
+                        <a href="/">
+                            <img src="vh_logo.png" alt="Vanhack Fullstack/Backend" />
+                        </a>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav>
-                        <NavItem eventKey={1} href="#">
-                            Link
-				</NavItem>
-                        <NavItem eventKey={2} href="#">
-                            Link
-				</NavItem>
+                        <NavbarItem eventKey={1} to="/" caption="Home" />
+                        <NavbarItem eventKey={2} to="/test" caption="API Test" />
+
                         <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
                             <MenuItem eventKey={3.1}>Action</MenuItem>
                             <MenuItem eventKey={3.2}>Another action</MenuItem>
@@ -36,12 +33,8 @@ class NavbarMain extends Component {
                         </NavDropdown>
                     </Nav>
                     <Nav pullRight>
-                        <NavItem eventKey={1} href="#">
-                            Link Right
-				</NavItem>
-                        <NavItem eventKey={2} href="#">
-                            Link Right
-				</NavItem>
+                        <NavItem eventKey={1} href="#">Link Right</NavItem>
+                        <NavItem eventKey={2} href="#">Link Right</NavItem>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>;
