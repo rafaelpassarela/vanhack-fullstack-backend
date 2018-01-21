@@ -15,7 +15,7 @@ using BackendAspNet.Models;
 namespace BackendAspNet.Controllers
 {
     [Authorize]
-    [Route("[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -72,28 +72,23 @@ namespace BackendAspNet.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(ApplicationUserRegister model, string returnUrl = null)
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register([FromBody]ApplicationUserRegister model)
         {
-            if (ModelState.IsValid)
+            var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    _logger.LogInformation("User created a new account with password.");
+                _logger.LogInformation("User created a new account with password.");
 
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-         
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation("User created a new account with password.");
-                    return Ok(returnUrl);
-                }
+                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
-                return BadRequest(AddErrors(result));
+                await _signInManager.SignInAsync(user, isPersistent: false);
+                _logger.LogInformation("User created a new account with password.");
+                return Ok("Ok");
             }
 
-            return BadRequest("Invalid Model");
+            return BadRequest(AddErrors(result));
         }
 
         [HttpPost]

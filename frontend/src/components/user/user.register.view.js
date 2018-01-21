@@ -1,13 +1,8 @@
 ﻿import React, { Component } from 'react';
-//import Form from 'react-bootstrap/lib/Form';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from 'react-bootstrap/lib/FormControl';
-import Button from 'react-bootstrap/lib/Button';
-//import Col from 'react-bootstrap/lib/Col';
-//import Grid from 'react-bootstrap/lib/Grid';
-//import Row from 'react-bootstrap/lib/Row';
-
+import UserRegisterPost from './user.register.post';
 
 class UserRegisterView extends Component {
 
@@ -17,14 +12,14 @@ class UserRegisterView extends Component {
         this.handleChange = this.handleChange.bind(this);
 
         this.state = {
-            email: '',
-            password: '',
-            confpwd: ''
+            Email: 'rafaelpassarela@gmail.com',
+            Password: '123456',
+            ConfirmPassword: '123456'
         };
     }
 
     getEmailValidation() {
-        const email = this.state.email;
+        const email = this.state.Email;
 
         if (email === undefined || email === '')
             return null;
@@ -39,17 +34,17 @@ class UserRegisterView extends Component {
     }
 
     getPwdValidation() {
-        const length = this.state.password.length;
+        const length = this.state.Password.length;
         if (length > 5) return 'success';
         else if (length > 0) return 'error';
         return null;
     }
 
     getConfPwdValidation() {
-        if (this.state.password === undefined || this.state.password === '')
+        if (this.state.Password === undefined || this.state.Password === '')
             return null;
 
-        return (this.state.password === this.state.confpwd) ? 'success' : 'error';
+        return (this.state.Password === this.state.ConfirmPassword) ? 'success' : 'error';
     }
 
     handleChange(e) {
@@ -71,74 +66,26 @@ class UserRegisterView extends Component {
                 <hr/>
                 <FormGroup controlId="formUserEmail" validationState={this.getEmailValidation()} >
                     <ControlLabel>EMail</ControlLabel>
-                    <FormControl type="text" name="email" value={this.state.email} placeholder="EMail" onChange={this.handleChange} />
+                    <FormControl type="text" name="Email" value={this.state.Email} placeholder="EMail" onChange={this.handleChange} />
                     <FormControl.Feedback />
                 </FormGroup>
 
                 <FormGroup controlId="formUserPassword" validationState={this.getPwdValidation()} >
-                    <ControlLabel>Password</ControlLabel>
-                    <FormControl type="password" name="password" value={this.state.password} placeholder="Password" onChange={this.handleChange} />
+                    <ControlLabel>Password <small>at least 6 chars</small></ControlLabel>
+                    <FormControl type="password" name="Password" value={this.state.Password} placeholder="Password" onChange={this.handleChange} />
                     <FormControl.Feedback />
                 </FormGroup>
 
                 <FormGroup controlId="formUserConfirmPassword" validationState={this.getConfPwdValidation()} >
                     <ControlLabel>Confirm Password</ControlLabel>
-                    <FormControl type="password" name="confpwd" value={this.state.confpwd} placeholder="Confirm Password" onChange={this.handleChange} />
+                    <FormControl type="password" name="ConfirmPassword" value={this.state.ConfirmPassword} placeholder="Confirm Password" onChange={this.handleChange} />
                     <FormControl.Feedback />
                 </FormGroup>
 
-                <Button type="button" disabled={!valid}>Register</Button>
-
+                <UserRegisterPost enabled={valid} data={this.state} />
             </form>
         );
     }
-
-    /*
-    render() {
-        return (
-            <div>
-                <Form horizontal>
-                    <Grid>
-                        <Row>
-                            <Col sm={2}>
-                                <h2>Register</h2>
-                                <h4>Create a new account.</h4>
-                            </Col>
-                        </Row>
-                    </Grid>
-                    <hr />
-                    <FormGroup controlId="formHorizontalEmail">
-                        <ControlLabel>Email</ControlLabel>
-                        
-                            <FormControl type="email" name="Email" id="Email" placeholder="Email" />
-                        
-                    </FormGroup>
-
-                    <FormGroup controlId="formHorizontalPassword">
-                        <Col componentClass={ControlLabel} sm={2}>Password</Col>
-                        <Col sm={10}>
-                            <FormControl type="password" name="Password" id="Password" placeholder="Password" />
-                        </Col>
-                    </FormGroup>
-
-                    <FormGroup controlId="formHorizontalPassword">
-                        <Col componentClass={ControlLabel} sm={2}>Confirm Password</Col>
-                        <Col sm={10}>
-                            <FormControl type="password" name="ConfirmPassword" id="ConfirmPassword" placeholder="Confirm Password" />
-                        </Col>
-                    </FormGroup>
-
-                    <FormGroup>
-                        <Col smOffset={2} sm={10}>
-                            <Button type="submit">Register</Button>
-                        </Col>
-                    </FormGroup>
-                </Form>
-            </div>
-        );
-    }
-    */
-
 }
 
 export default UserRegisterView;
