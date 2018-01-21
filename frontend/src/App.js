@@ -6,7 +6,6 @@ import 'isomorphic-fetch';
 import HomeHeader from './components/home.header.view';
 import NavbarMain from './components/navbar.main';
 import RouterHolder from './components/router.place.holder'
-import MarkdownEditor from './components/markdown.editor.view';
 
 class App extends Component {
 
@@ -20,10 +19,8 @@ class App extends Component {
                 <div className="App">
                     <NavbarMain />
                     <HomeHeader />
-                    
                     <div className="din-content">
                         <RouterHolder />
-                        <MarkdownEditor text="# Test by prop" />
                     </div>
                 </div>
             </Router>

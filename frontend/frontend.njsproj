@@ -52,6 +52,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="src\components\home.header.view.js" />
+    <Compile Include="src\components\home.main.view.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="src\components\markdown.editor.view.js">
       <SubType>Code</SubType>
     </Compile>
