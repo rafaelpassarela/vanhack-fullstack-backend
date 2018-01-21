@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/lib/Nav';
 import NavDropdown from 'react-bootstrap/lib/NavDropdown';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
 import NavbarItem from './navbar.item';
+import logo from '../img/vh_logo.png';
 
 class NavbarMain extends Component {
 
@@ -13,7 +14,7 @@ class NavbarMain extends Component {
                 <Navbar.Header>
                     <Navbar.Brand>
                         <a href="/">
-                            <img src="vh_logo.png" alt="Vanhack Fullstack/Backend" />
+                            <img src={logo} alt="Vanhack Fullstack/Backend" />
                         </a>
                     </Navbar.Brand>
                     <Navbar.Toggle />
@@ -32,7 +33,7 @@ class NavbarMain extends Component {
                         </NavDropdown>
                     </Nav>
                     <Nav pullRight>
-                        <NavbarItem eventKey={1} to="/register" caption="Register" />
+                        <NavbarItem eventKey={1} to="/Account/Register" caption="Register" />
                         <NavbarItem eventKey={2} to="/login" caption="Login" />
                     </Nav>
                 </Navbar.Collapse>

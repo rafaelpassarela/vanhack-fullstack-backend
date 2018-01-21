@@ -31,9 +31,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="package.json" />
+    <Content Include="src\img\404.png" />
     <Content Include="public\favicon.ico" />
     <Content Include="public\index.html" />
     <Content Include="public\manifest.json" />
+    <Content Include="src\img\vh_logo.png" />
     <Content Include="README.md" />
     <Content Include="src\components\test.api.component.js" />
     <Content Include="src\styles\App.css" />
@@ -43,6 +45,8 @@
     <Folder Include="public\" />
     <Folder Include="src\" />
     <Folder Include="src\components\" />
+    <Folder Include="src\components\user\" />
+    <Folder Include="src\img\" />
     <Folder Include="src\styles\" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +67,9 @@
     </Compile>
     <Compile Include="src\components\navbar.main.js" />
     <Compile Include="src\components\router.place.holder.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\components\user\user.register.view.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="src\index.js" />
