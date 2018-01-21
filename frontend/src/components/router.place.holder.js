@@ -2,6 +2,7 @@
 import { Route } from 'react-router-dom';
 
 // pages
+import Error404 from './error.404.view';
 import TestApiClass from './test.api.component';
 
 class RouterHolder extends Component {
@@ -15,6 +16,8 @@ class RouterHolder extends Component {
                 )} />
 
                 <Route path="/test" component={TestApiClass} />
+
+                <Route component={Error404} />
             </div>
         );
 

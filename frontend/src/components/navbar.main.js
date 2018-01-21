@@ -33,8 +33,8 @@ class NavbarMain extends Component {
                         </NavDropdown>
                     </Nav>
                     <Nav pullRight>
-                        <NavItem eventKey={1} href="#">Link Right</NavItem>
-                        <NavItem eventKey={2} href="#">Link Right</NavItem>
+                        <NavbarItem eventKey={1} to="/register" caption="Register" />
+                        <NavbarItem eventKey={2} to="/login" caption="Login" />
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>;
