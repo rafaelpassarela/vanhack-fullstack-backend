@@ -17,47 +17,77 @@ class UserRegisterView extends Component {
         this.handleChange = this.handleChange.bind(this);
 
         this.state = {
-            value: ''
+            email: '',
+            password: '',
+            confpwd: ''
         };
     }
 
-    getValidationState() {
-        const length = this.state.value.length;
-        if (length > 10) return 'success';
-        else if (length > 5) return 'warning';
+    getEmailValidation() {
+        const email = this.state.email;
+
+        if (email === undefined || email === '')
+            return null;
+
+        var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if (re.test(email.toLowerCase())) {
+            return 'success'
+        } else {
+            return 'error'
+        }
+    }
+
+    getPwdValidation() {
+        const length = this.state.password.length;
+        if (length > 5) return 'success';
         else if (length > 0) return 'error';
         return null;
     }
 
+    getConfPwdValidation() {
+        if (this.state.password === undefined || this.state.password === '')
+            return null;
+
+        return (this.state.password === this.state.confpwd) ? 'success' : 'error';
+    }
+
     handleChange(e) {
-        this.setState({ value: e.target.value });
+        let key = {};
+        key[e.target.name] = e.target.value;
+       
+        this.setState( key );
     }
 
     render() {
+        const valid = (this.getEmailValidation() === 'success')
+            && (this.getPwdValidation() === 'success')
+            && (this.getConfPwdValidation() === 'success');
+
         return (
             <form>
                 <h2>Register</h2>
                 <h4>Create a new account.</h4>
                 <hr/>
-                <FormGroup controlId="formUserEmail" validationState={this.getValidationState()} >
+                <FormGroup controlId="formUserEmail" validationState={this.getEmailValidation()} >
                     <ControlLabel>EMail</ControlLabel>
-                    <FormControl type="text" value={this.state.value} placeholder="EMail" onChange={this.handleChange} />
+                    <FormControl type="text" name="email" value={this.state.email} placeholder="EMail" onChange={this.handleChange} />
                     <FormControl.Feedback />
                 </FormGroup>
 
-                <FormGroup controlId="formUserPassword" validationState={this.getValidationState()} >
+                <FormGroup controlId="formUserPassword" validationState={this.getPwdValidation()} >
                     <ControlLabel>Password</ControlLabel>
-                    <FormControl type="password" value={this.state.value} placeholder="Password" onChange={this.handleChange} />
+                    <FormControl type="password" name="password" value={this.state.password} placeholder="Password" onChange={this.handleChange} />
                     <FormControl.Feedback />
                 </FormGroup>
 
-                <FormGroup controlId="formUserConfirmPassword" validationState={this.getValidationState()} >
+                <FormGroup controlId="formUserConfirmPassword" validationState={this.getConfPwdValidation()} >
                     <ControlLabel>Confirm Password</ControlLabel>
-                    <FormControl type="password" value={this.state.value} placeholder="Confirm Password" onChange={this.handleChange} />
+                    <FormControl type="password" name="confpwd" value={this.state.confpwd} placeholder="Confirm Password" onChange={this.handleChange} />
                     <FormControl.Feedback />
                 </FormGroup>
 
-                <Button type="button">Register</Button>
+                <Button type="button" disabled={!valid}>Register</Button>
 
             </form>
         );
