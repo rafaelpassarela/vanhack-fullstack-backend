@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using BackendAspNet.Data;
+using Microsoft.AspNetCore.Identity;
+using BackendAspNet.Models;
 
 namespace AspNetReact
 {
@@ -23,8 +25,9 @@ namespace AspNetReact
                 var services = scope.ServiceProvider;
                 try
                 {
+                    var user = services.GetRequiredService<UserManager<ApplicationUser>>();
                     var context = services.GetRequiredService<ApplicationDbContext>();
-                    DbInitializer.Initialize(context);
+                    DbInitializer.Initialize(context, user);
                 }
                 catch (Exception ex)
                 {
