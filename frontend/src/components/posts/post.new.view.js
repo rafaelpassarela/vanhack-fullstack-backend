@@ -22,7 +22,7 @@ class PostNewView extends Component {
 
     render() {
 
-        const data = { text: '', id: -1, userName: getUser(), categoryName: 'Games', categoryId: 1 };
+        const data = { text: '', id: -1, userName: getUser(), categoryName: '', categoryID: 1 };
         const list = this.state.categories;
 
         return (

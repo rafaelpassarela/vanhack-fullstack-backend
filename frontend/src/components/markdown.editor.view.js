@@ -28,7 +28,7 @@ class MarkdownEditor extends Component {
     handleValueChange = (value) => {
         let det = {
             categoryName: this.state.detail.categoryName,
-            categoryId: this.state.detail.categoryId,
+            categoryID: this.state.detail.categoryID,
             id: this.state.detail.id,
             text: value.text,
             userName: this.state.detail.userName
@@ -39,7 +39,7 @@ class MarkdownEditor extends Component {
     handleCategoryChange = (e) => {
         let det = {
             categoryName: this.state.detail.categoryName,
-            categoryId: e.target.value,
+            categoryID: e.target.value,
             id: this.state.detail.id,
             text: this.state.detail.text,
             userName: this.state.detail.userName
@@ -62,9 +62,10 @@ class MarkdownEditor extends Component {
     }
 
     renderCategorySelect() {
-        const selected = this.state.detail.categoryId;
+        const selected = this.state.detail.categoryID;
+        //defaultValue = { selected }
         return (
-            <select defaultValue={selected} onChange={this.handleCategoryChange}>
+            <select  value={selected} onChange={this.handleCategoryChange}>
                 {this.props.categoryList.map((data, i) =>
                     <option key={i} value={data.id}>{data.name}</option>
                 )};

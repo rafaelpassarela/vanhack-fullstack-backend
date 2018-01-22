@@ -69,7 +69,7 @@ class PostController extends Component {
             return <Redirect to='/' />;
         }
 
-        const enabled = (this.props.data.categoryId > 0 && this.props.data.text !== "");
+        const enabled = (this.props.data.categoryID > 0 && this.props.data.text !== "");
 
         const valid = enabled && !this.state.sending;
         const caption = (this.state.sending) ? 'Saving...' : 'Save';
