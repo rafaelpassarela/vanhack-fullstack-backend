@@ -2,6 +2,7 @@
 import Alert from 'react-bootstrap/lib/Alert';
 import Button from 'react-bootstrap/lib/Button';
 import { Redirect } from 'react-router';
+import { setUser } from '../../helpers/cookie.helper';
 
 class UserRegisterPost extends Component {
 
@@ -24,6 +25,7 @@ class UserRegisterPost extends Component {
 
         fetch("http://localhost:54163/api/Account/Register", {
             method: 'POST',
+            credentials: 'include',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
@@ -31,7 +33,11 @@ class UserRegisterPost extends Component {
             },
             body: JSON.stringify(this.props.data)
         })
-            .then(res => res.json())
+            .then(res => {
+                //const token = res.headers.get('Set-Cookie');
+                setUser(this.props.data.Email);
+                return res.json();
+            })
             .then(
             (result) => {
                 this.setState({
@@ -44,8 +50,15 @@ class UserRegisterPost extends Component {
                     sending: false,
                     message: error.message + ' - ' + error.stack
                 });
-            }
-            );
+            });
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextState.message === 'Ok') {
+            window.open('/', '_self');
+            return false;
+        }
+        return true;
     }
 
     render() {
@@ -61,7 +74,7 @@ class UserRegisterPost extends Component {
                 <h4>Oh snap! We found an error!</h4>
                 {this.state.message}
             </Alert> : null;
-        
+
         return (
             <div>
                 <Button type="button" onClick={this.clickHandler} disabled={!valid}>{caption}</Button>

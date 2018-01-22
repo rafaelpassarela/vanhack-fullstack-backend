@@ -45,8 +45,8 @@ namespace BackendAspNet.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(ApplicationUser model, string returnUrl = null)
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(ApplicationUser model)
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
@@ -57,7 +57,7 @@ namespace BackendAspNet.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return Ok(returnUrl);
+                    return Ok('Ok');
                 }
                 else
                 {
@@ -92,7 +92,7 @@ namespace BackendAspNet.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
@@ -100,6 +100,7 @@ namespace BackendAspNet.Controllers
             return Ok("Logged Out");
         }
 
+        #region external_login
         //[HttpPost]
         //[AllowAnonymous]
         //[ValidateAntiForgeryToken]
@@ -178,6 +179,7 @@ namespace BackendAspNet.Controllers
         //    ViewData["ReturnUrl"] = returnUrl;
         //    return View(nameof(ExternalLogin), model);
         //}
+#endregion
 
         [HttpGet]
         [AllowAnonymous]

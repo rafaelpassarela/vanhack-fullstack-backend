@@ -47,6 +47,7 @@
     <Folder Include="src\components\" />
     <Folder Include="src\components\user\" />
     <Folder Include="src\img\" />
+    <Folder Include="src\helpers\" />
     <Folder Include="src\styles\" />
   </ItemGroup>
   <ItemGroup>
@@ -69,8 +70,14 @@
     <Compile Include="src\components\router.place.holder.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="src\components\user\user.logout.view.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="src\components\user\user.register.post.js" />
     <Compile Include="src\components\user\user.register.view.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\helpers\cookie.helper.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="src\index.js" />

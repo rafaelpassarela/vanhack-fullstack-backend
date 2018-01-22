@@ -39,7 +39,10 @@ class TestApiClass extends Component {
         //        secondParam: 'yourOtherValue',
         //    }),
         //})
-        fetch("http://localhost:54163/api/values")
+        fetch("http://localhost:54163/api/values", {
+            method: 'GET',
+            credentials: 'include'
+        })
             .then(res => res.json())
             .then(
             (result) => {
