@@ -6,7 +6,7 @@ class HomeMain extends Component {
     render() {
         return (
             <div>
-                <MarkdownEditor text="# Test by prop" />
+                <MarkdownEditor text="# Test by prop" readOnly="true" />
             </div>
         );
     }

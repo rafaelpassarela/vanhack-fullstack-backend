@@ -7,7 +7,8 @@ class MarkdownEditor extends Component {
         super(props);
         this.state = {
             reactMdeValue: { text: this.props.text, selection: null },
-            editMode: false
+            editMode: this.props.editMode,
+            readOnly: this.props.readOnly
         };
     }
 
@@ -45,5 +46,11 @@ class MarkdownEditor extends Component {
         )
     }
 }
+
+MarkdownEditor.defaultProps = {
+    text: '',
+    editMode: false,
+    readOnly: true
+};
 
 export default MarkdownEditor;

@@ -68,6 +68,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="src\components\navbar.main.js" />
+    <Compile Include="src\components\posts\post.controller.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\components\posts\post.new.view.js" />
     <Compile Include="src\components\router.place.holder.js">
       <SubType>Code</SubType>
     </Compile>
