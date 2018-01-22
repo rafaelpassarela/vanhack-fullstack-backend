@@ -1,14 +1,14 @@
 ﻿import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Alert from 'react-bootstrap/lib/Alert';
 import Button from 'react-bootstrap/lib/Button';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 
-import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import { setUser } from '../../helpers/cookie.helper';
 
-class UserRegisterPost extends Component {
+class UserLoginPost extends Component {
 
     constructor(props) {
         super(props);
@@ -27,7 +27,7 @@ class UserRegisterPost extends Component {
     clickHandler() {
         this.setState({ sending: true, message: '' });
 
-        fetch("http://localhost:54163/api/Account/Register", {
+        fetch("http://localhost:54163/api/Account/Login", {
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -39,11 +39,13 @@ class UserRegisterPost extends Component {
         })
             .then(res => {
                 //const token = res.headers.get('Set-Cookie');
-                setUser(this.props.data.Email);
                 return res.json();
             })
             .then(
             (result) => {
+                if (result === 'Ok') {
+                    setUser(this.props.data.Email);
+                }
                 this.setState({
                     sending: false,
                     message: result
@@ -72,7 +74,7 @@ class UserRegisterPost extends Component {
         }
 
         const valid = this.props.enabled && !this.state.sending;
-        const caption = (this.state.sending) ? 'Registering...' : 'Register';
+        const caption = (this.state.sending) ? 'Logging In...' : 'Login';
         const alert = (this.state.message !== '') ?
             <Alert bsStyle="danger" onDismiss={this.clearError}>
                 <h4>Oh snap! We found an error!</h4>
@@ -86,7 +88,7 @@ class UserRegisterPost extends Component {
                         <Button type="button" onClick={this.clickHandler} disabled={!valid}>{caption}</Button>
                     </Col>
                     <Col xs={12} sm={5} md={5} lg={5}>
-                        Already have an account, <Link to="/Account/Login">login here</Link>.
+                        You don't have an account yet, <Link to="/Account/Register">register here</Link>.
                     </Col>
                 </Row>
                 <br />
@@ -96,4 +98,4 @@ class UserRegisterPost extends Component {
     }
 }
 
-export default UserRegisterPost;
+export default UserLoginPost;

@@ -2,9 +2,9 @@
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from 'react-bootstrap/lib/FormControl';
-import UserRegisterPost from './user.register.post';
+import UserLoginPost from './user.login.post';
 
-class UserRegisterView extends Component {
+class UserLoginView extends Component {
 
     constructor(props) {
         super(props);
@@ -12,9 +12,8 @@ class UserRegisterView extends Component {
         this.handleChange = this.handleChange.bind(this);
 
         this.state = {
-            Email: '',
-            Password: '',
-            ConfirmPassword: ''
+            Email: 'rafaelpassarela@gmail.com',
+            PasswordHash: '123456'
         };
     }
 
@@ -34,17 +33,10 @@ class UserRegisterView extends Component {
     }
 
     getPwdValidation() {
-        const length = this.state.Password.length;
+        const length = this.state.PasswordHash.length;
         if (length > 5) return 'success';
         else if (length > 0) return 'error';
         return null;
-    }
-
-    getConfPwdValidation() {
-        if (this.state.Password === undefined || this.state.Password === '')
-            return null;
-
-        return (this.state.Password === this.state.ConfirmPassword) ? 'success' : 'error';
     }
 
     handleChange(e) {
@@ -56,13 +48,12 @@ class UserRegisterView extends Component {
 
     render() {
         const valid = (this.getEmailValidation() === 'success')
-            && (this.getPwdValidation() === 'success')
-            && (this.getConfPwdValidation() === 'success');
+            && (this.getPwdValidation() === 'success');
 
         return (
             <form>
-                <h2>Register</h2>
-                <h4>Create a new account.</h4>
+                <h2>Login</h2>
+                <h4>Use a local account to log in.</h4>
                 <hr/>
                 <FormGroup controlId="formUserEmail" validationState={this.getEmailValidation()} >
                     <ControlLabel>EMail</ControlLabel>
@@ -70,22 +61,16 @@ class UserRegisterView extends Component {
                     <FormControl.Feedback />
                 </FormGroup>
 
-                <FormGroup controlId="formUserPassword" validationState={this.getPwdValidation()} >
+                <FormGroup controlId="formUserPasswordHash" validationState={this.getPwdValidation()} >
                     <ControlLabel>Password <small>at least 6 chars</small></ControlLabel>
-                    <FormControl type="password" name="Password" value={this.state.Password} placeholder="Password" onChange={this.handleChange} />
+                    <FormControl type="password" name="PasswordHash" value={this.state.PasswordHash} placeholder="Password" onChange={this.handleChange} />
                     <FormControl.Feedback />
                 </FormGroup>
 
-                <FormGroup controlId="formUserConfirmPassword" validationState={this.getConfPwdValidation()} >
-                    <ControlLabel>Confirm Password</ControlLabel>
-                    <FormControl type="password" name="ConfirmPassword" value={this.state.ConfirmPassword} placeholder="Confirm Password" onChange={this.handleChange} />
-                    <FormControl.Feedback />
-                </FormGroup>
-
-                <UserRegisterPost enabled={valid} data={this.state} />
+                <UserLoginPost enabled={valid} data={this.state} />
             </form>
         );
     }
 }
 
-export default UserRegisterView;
+export default UserLoginView;

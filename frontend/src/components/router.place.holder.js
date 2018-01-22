@@ -7,6 +7,7 @@ import TestApiClass from './test.api.component';
 import HomeMain from './home.main.view';
 import UserRegisterView from './user/user.register.view';
 import UserLogOutView from './user/user.logout.view';
+import UserLoginView from './user/user.login.view';
 
 //<Route exact path="/" render={() => (
 //    <h1>You're at Home</h1>
@@ -23,6 +24,7 @@ class RouterHolder extends Component {
                     <Route path="/test" component={TestApiClass} />
                     <Route path="/Account/Register" component={UserRegisterView} />
                     <Route path="/Account/Logout" component={UserLogOutView} />
+                    <Route path="/Account/Login" component={UserLoginView} />
                     <Route component={Error404} />
                 </Switch>
             </div>
