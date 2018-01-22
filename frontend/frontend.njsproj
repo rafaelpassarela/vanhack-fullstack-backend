@@ -49,6 +49,7 @@
     <Folder Include="src\components\user\" />
     <Folder Include="src\img\" />
     <Folder Include="src\helpers\" />
+    <Folder Include="src\model\" />
     <Folder Include="src\styles\" />
   </ItemGroup>
   <ItemGroup>
@@ -87,7 +88,13 @@
     <Compile Include="src\helpers\cookie.helper.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="src\helpers\get.category.list.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="src\index.js" />
+    <Compile Include="src\model\post.model.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="src\registerServiceWorker.js" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->

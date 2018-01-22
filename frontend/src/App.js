@@ -8,7 +8,6 @@ import HomeHeader from './components/home.header.view';
 import NavbarMain from './components/navbar.main';
 import RouterHolder from './components/router.place.holder'
 
-
 class App extends Component {
 
     render() {
