@@ -1,11 +1,13 @@
 ﻿import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactMde, { ReactMdeCommands } from 'react-mde';
+import { Redirect } from 'react-router';
 import Button from 'react-bootstrap/lib/Button';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
-import { Redirect } from 'react-router';
+
+import PostController from './posts/post.controller';
 
 //import PostModel from '../model/post.model';
 
@@ -24,7 +26,25 @@ class MarkdownEditor extends Component {
     }
 
     handleValueChange = (value) => {
-        this.setState({ reactMdeValue: value });
+        let det = {
+            categoryName: this.state.detail.categoryName,
+            categoryId: this.state.detail.categoryId,
+            id: this.state.detail.id,
+            text: value.text,
+            userName: this.state.detail.userName
+        };
+        this.setState({ reactMdeValue: value, detail: det });
+    }
+
+    handleCategoryChange = (e) => {
+        let det = {
+            categoryName: this.state.detail.categoryName,
+            categoryId: e.target.value,
+            id: this.state.detail.id,
+            text: this.state.detail.text,
+            userName: this.state.detail.userName
+        };
+        this.setState({ detail: det });
     }
 
     handleEditModeChange = () => {
@@ -36,7 +56,7 @@ class MarkdownEditor extends Component {
             canceled: true,
             editMode: false,
             reactMdeValue: {
-                text: this.state.detail.text
+                text: this.props.detail.text
             }
         });
     }
@@ -44,12 +64,12 @@ class MarkdownEditor extends Component {
     renderCategorySelect() {
         const selected = this.state.detail.categoryId;
         return (
-            <select defaultValue={selected}>
+            <select defaultValue={selected} onChange={this.handleCategoryChange}>
                 {this.props.categoryList.map((data, i) =>
                     <option key={i} value={data.id}>{data.name}</option>
                 )};
             </select>
-            );
+        );
     }
 
     render() {
@@ -66,17 +86,17 @@ class MarkdownEditor extends Component {
         }
 
         let control = undefined;
-        
+        let data = this.state.detail;
+
         if (!this.state.readOnly) {
             control = (this.state.editMode) ?
                 (<span>
-                    <Button bsStyle="success" onClick={this.handleEditModeChange}>Save</Button>&nbsp;&nbsp;&nbsp;
-                    <Button bsStyle="danger" onClick={this.handleCancelChanges}>Cancel</Button>
+                    <PostController data={data} onCancel={this.handleCancelChanges} />
                 </span>
-                ): (
-                <span>
-                    <Button bsStyle="link" onClick={this.handleEditModeChange}>Edit</Button>
-                </span>);
+                ) : (
+                    <span>
+                        <Button bsStyle="link" onClick={this.handleEditModeChange}>Edit</Button>
+                    </span>);
         }
 
         const categoryEdit = (!this.state.readOnly && this.state.editMode) ?
@@ -91,14 +111,16 @@ class MarkdownEditor extends Component {
         return (
             <div className="rmd-container">
                 <Row className="show-grid">
-                    <Col xs={12} sm={6} md={6} lg={6}>
+                    <Col xs={12} sm={12} md={12} lg={12}>
                         by <b>{this.state.detail.userName}</b>    <Glyphicon glyph="tags" /> {categoryEdit}
                     </Col>
-                    <Col xs={12} sm={5} md={5} lg={5}>
-                        {control}       
+                </Row>
+                <Row>
+                    <Col xs={12} sm={12} md={12} lg={12}>
+                        {control}
                     </Col>
                 </Row>
-                 
+
                 <ReactMde
                     textAreaProps={{
                         id: 'ta1',

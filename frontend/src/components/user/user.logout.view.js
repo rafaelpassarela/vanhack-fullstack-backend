@@ -11,7 +11,7 @@ class UserLogoutView extends Component {
     }
 
     performLogout() {
-
+        removeUser();
         fetch("http://localhost:54163/api/Account/Logout", {
             method: 'POST',
             credentials: 'include',
@@ -27,7 +27,6 @@ class UserLogoutView extends Component {
             })
             .then(
             (result) => {
-                removeUser();
                 this.goToHome();
             },
             (error) => {

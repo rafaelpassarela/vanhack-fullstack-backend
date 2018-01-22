@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BackendAspNet.Data;
 using BackendAspNet.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BackendAspNet.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class CategoriesController : Controller
     {
@@ -22,6 +24,7 @@ namespace BackendAspNet.Controllers
 
         // GET: Categories
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return Ok(await _context.Categories.ToListAsync());
@@ -29,6 +32,7 @@ namespace BackendAspNet.Controllers
 
         // GET: Categories/Details/5
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,12 +50,9 @@ namespace BackendAspNet.Controllers
             return Ok(category);
         }
 
-        // POST: Categories/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name")] Category category)
+        public async Task<IActionResult> Create([FromBody] Category category)
         {
             if (ModelState.IsValid)
             {
@@ -62,12 +63,8 @@ namespace BackendAspNet.Controllers
             return Ok(category);
         }
 
-        // POST: Categories/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name")] Category category)
+        public async Task<IActionResult> Edit(int id, [FromBody] Category category)
         {
             if (id != category.ID)
             {
@@ -117,7 +114,6 @@ namespace BackendAspNet.Controllers
 
         // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var category = await _context.Categories.SingleOrDefaultAsync(m => m.ID == id);
