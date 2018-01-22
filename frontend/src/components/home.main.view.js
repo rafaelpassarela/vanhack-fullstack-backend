@@ -12,6 +12,7 @@ class HomeMain extends Component {
         this.categoryCallback = this.categoryCallback.bind(this);
 
         this.state = {
+            error: undefined,
             userName: '',
             list: [],
             categoryList: [],
@@ -23,7 +24,7 @@ class HomeMain extends Component {
     }
 
     fetchData() {
-        this.setState({ loading: true, message: '' });
+        this.setState({ error: undefined, loading: true, message: '' });
 
         fetch("http://localhost:54163/api/PostData/GetList", {
             method: 'GET',
@@ -49,6 +50,7 @@ class HomeMain extends Component {
             (error) => {
                 this.setState({
                     loading: false,
+                    error,
                     message: error.message + ' - ' + error.stack
                 });
             });
@@ -70,7 +72,7 @@ class HomeMain extends Component {
 
     render() {
 
-        if (this.state.categoryList.length === 0) {
+        if (!this.state.error && this.state.categoryList.length === 0) {
             return <span>Loading...</span>
         }
 
@@ -80,6 +82,16 @@ class HomeMain extends Component {
                     <Alert bsStyle="danger">
                         <h4>Oh snap! We found an error!</h4>
                         {this.state.message}
+                    </Alert>
+                </div>);
+        }
+
+        if (this.state.error) {
+            return (
+                <div>
+                    <Alert bsStyle="danger">
+                        <h4>Oh snap! We found an error!</h4>
+                        {this.state.error.message}
                     </Alert>
                 </div>);
         }

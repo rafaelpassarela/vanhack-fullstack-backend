@@ -45,7 +45,7 @@ namespace BackendAspNet.Controllers
                          join Categories c on (c.ID = pd.CategoryID)
                          join AspNetUsers u on (u.Id = pd.UserId)
                          {where}
-                         order by pd.CreatingDate desc ";
+                         order by pd.ID desc ";
 
             if (by > 0 && from != null)
                 sql += $"OFFSET {from} ROWS FETCH NEXT {by} ROWS ONLY";
@@ -100,8 +100,8 @@ namespace BackendAspNet.Controllers
                     {
                         ID = (postData.ID < 0) ? 0 : postData.ID,
                         Category = selCategory,
-                        CreatingDate = DateTime.Now,
                         Data = postData.Text,
+                        CreatingDate = DateTime.Now,
                         User = selUser
                     };
 

@@ -14,6 +14,15 @@ body {
     margin-bottom: 25px;
 }
 
+.markdown-bar{
+    background-color: #222;
+    color:white;
+}
+
+.force-black{
+    background-color: #222;
+}
+
 ::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     background-color: #F5F5F5;

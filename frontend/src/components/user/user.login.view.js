@@ -12,8 +12,8 @@ class UserLoginView extends Component {
         this.handleChange = this.handleChange.bind(this);
 
         this.state = {
-            Email: 'rafaelpassarela@gmail.com',
-            PasswordHash: '123456'
+            Email: '',
+            PasswordHash: ''
         };
     }
 

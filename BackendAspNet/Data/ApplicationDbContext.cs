@@ -27,5 +27,6 @@ namespace BackendAspNet.Data
 
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<PostData> PostData { get; set; }
+        public DbSet<PostComment> PostComment { get; set; }
     }
 }

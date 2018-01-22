@@ -65,7 +65,7 @@ class MarkdownEditor extends Component {
         const selected = this.state.detail.categoryID;
         //defaultValue = { selected }
         return (
-            <select  value={selected} onChange={this.handleCategoryChange}>
+            <select value={selected} onChange={this.handleCategoryChange} className="force-black">
                 {this.props.categoryList.map((data, i) =>
                     <option key={i} value={data.id}>{data.name}</option>
                 )};
@@ -112,7 +112,7 @@ class MarkdownEditor extends Component {
         return (
             <div className="rmd-container">
                 <Row className="show-grid">
-                    <Col xs={12} sm={12} md={12} lg={12}>
+                    <Col xs={12} sm={12} md={12} lg={12} className="markdown-bar">
                         by <b>{this.state.detail.userName}</b>    <Glyphicon glyph="tags" /> {categoryEdit}
                     </Col>
                 </Row>
