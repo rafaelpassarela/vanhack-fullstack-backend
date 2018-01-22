@@ -51,11 +51,17 @@ namespace BackendAspNet.Controllers
                 sql += $"OFFSET {from} ROWS FETCH NEXT {by} ROWS ONLY";
             
             var qtd = await GetTotalRecords(category);
-            
+
+            var list = await _context.Database.GetDbConnection().QueryAsync<PostDataRegister>(sql);
+            foreach (var item in list)
+            {
+                item.Comments = await _context.PostComment.Where(x => x.PostID == item.ID).ToListAsync();
+            }
+
             dynamic res = new System.Dynamic.ExpandoObject();
             res.Records = qtd;
-            res.List = await _context.Database.GetDbConnection().QueryAsync<PostDataRegister>(sql);
-
+            res.List = list;
+            
             return Ok( res);
         }
 

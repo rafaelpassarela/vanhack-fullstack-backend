@@ -109,11 +109,18 @@ class MarkdownEditor extends Component {
                 <span>{this.state.detail.categoryName}</span>
             );
 
+        let cDate = undefined;
+        if (this.state.detail.creatingDate) {
+            cDate = (new Date(this.state.detail.creatingDate)).toString();
+            //"Fri Feb 17 2017 01:00:00 GMT+0100"
+            cDate = 'on ' + cDate.slice(4, 24);
+        }
+
         return (
             <div className="rmd-container">
                 <Row className="show-grid">
                     <Col xs={12} sm={12} md={12} lg={12} className="markdown-bar">
-                        by <b>{this.state.detail.userName}</b>    <Glyphicon glyph="tags" /> {categoryEdit}
+                        by <b>{this.state.detail.userName}</b> {cDate}   <Glyphicon glyph="tags" /> {categoryEdit}
                     </Col>
                 </Row>
                 <Row>
