@@ -1,5 +1,6 @@
 ﻿using BackendAspNet.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace BackendAspNet.Data
     {
         public static void Initialize(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
-            context.Database.EnsureCreated();
-            
+            //context.Database.EnsureCreated();
+            context.Database.Migrate();
 
             if (!context.Categories.Any())
             {
@@ -37,7 +38,10 @@ namespace BackendAspNet.Data
                 var result = userManager.CreateAsync(user, "123456");
             }
 
-            
+            if (!context.PostData.Any())
+            {
+
+            }
         }
     }
 }

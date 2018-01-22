@@ -25,6 +25,7 @@ namespace BackendAspNet.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<BackendAspNet.Models.ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<PostData> PostData { get; set; }
     }
 }
