@@ -45,6 +45,7 @@
     <Folder Include="public\" />
     <Folder Include="src\" />
     <Folder Include="src\components\" />
+    <Folder Include="src\components\posts\" />
     <Folder Include="src\components\user\" />
     <Folder Include="src\img\" />
     <Folder Include="src\helpers\" />

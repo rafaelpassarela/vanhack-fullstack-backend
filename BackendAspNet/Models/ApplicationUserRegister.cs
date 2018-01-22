@@ -1,5 +1,8 @@
-﻿namespace BackendAspNet.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace BackendAspNet.Models
 {
+    [NotMapped]
     public class ApplicationUserRegister
     {
         public string Email { get; set; }
