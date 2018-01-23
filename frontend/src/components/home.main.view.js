@@ -4,6 +4,7 @@ import Alert from 'react-bootstrap/lib/Alert';
 import PostCommentList from './comment/post.comment.list';
 import { getUser } from '../helpers/cookie.helper';
 import { getCategoryList } from '../helpers/get.category.list';
+import classNames from 'classnames';
 
 class HomeMain extends Component {
     constructor(props) {
@@ -11,8 +12,10 @@ class HomeMain extends Component {
 
         this.fetchData = this.fetchData.bind(this);
         this.categoryCallback = this.categoryCallback.bind(this);
-
+        this.handleScroll = this.handleScroll.bind(this);
         this.state = {
+            eof: false,
+            lastUrl: '',
             error: undefined,
             userName: '',
             list: [],
@@ -24,10 +27,42 @@ class HomeMain extends Component {
         };
     }
 
-    fetchData() {
-        this.setState({ error: undefined, loading: true, message: '' });
+    handleScroll() {
+        const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
+        const body = document.body;
+        const html = document.documentElement;
+        const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+        const windowBottom = windowHeight + window.pageYOffset;
+        if (windowBottom >= docHeight - 100) {
+            this.setState({
+                message: 'bottom reached'
+            });
+            if (this.state.total !== this.state.list.length) {
+                this.fetchData();
+            }
+        } else {
+            this.setState({
+                message: 'not at bottom'
+            });
+        }
+    }
 
-        fetch("http://localhost:54163/api/PostData/GetList", {
+    fetchData() {
+        let url = "http://localhost:54163/api/PostData/GetList?by=3";
+        //if (this.state.list.length < this.state.total) {
+        url += "&from=" + this.state.list.length;
+        //}
+
+        if (this.state.lastUrl === url)
+            return;
+
+        this.setState({
+            error: undefined,
+            loading: true, message: '',
+            lastUrl: url
+        });
+
+        fetch(url, {
             method: 'GET',
             credentials: 'include',
             headers: {
@@ -42,10 +77,16 @@ class HomeMain extends Component {
             })
             .then(
             (result) => {
+                let current = this.state.list;
+                for (let i = 0; i < result.List.length; i++) {
+                    current.push(result.List[i]);
+                }
+                
                 this.setState({
                     loading: false,
+                    lastSize: result.List.length,
                     total: result.Records,
-                    list: result.List
+                    list: current
                 });
             },
             (error) => {
@@ -62,6 +103,7 @@ class HomeMain extends Component {
     }
 
     componentDidMount() {
+        window.addEventListener("scroll", this.handleScroll);
         getCategoryList(this.categoryCallback);
         let user = getUser();
         this.setState({
@@ -69,6 +111,10 @@ class HomeMain extends Component {
         });
 
         this.fetchData();
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("scroll", this.handleScroll);
     }
 
     render() {
