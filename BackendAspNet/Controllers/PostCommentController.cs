@@ -46,6 +46,7 @@ namespace BackendAspNet.Controllers
                     }
                     else
                     {
+                        comment.ID = 0;
                         _context.Add(comment);
                     }
 

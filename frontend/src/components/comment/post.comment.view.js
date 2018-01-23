@@ -1,8 +1,5 @@
 ﻿import React, { Component } from 'react';
 
-//import { getUser } from '../../helpers/cookie.helper';
-//import { getCategoryList } from '../../helpers/get.category.list';
-
 class PostCommentView extends Component {
 
     render() {

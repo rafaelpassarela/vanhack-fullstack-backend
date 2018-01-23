@@ -1,8 +1,7 @@
 ﻿import React, { Component } from 'react';
 import MarkdownEditor from './markdown.editor.view';
 import Alert from 'react-bootstrap/lib/Alert';
-import Button from 'react-bootstrap/lib/Button';
-import PostCommentView from './comment/post.comment.view';
+import PostCommentList from './comment/post.comment.list';
 import { getUser } from '../helpers/cookie.helper';
 import { getCategoryList } from '../helpers/get.category.list';
 
@@ -72,24 +71,6 @@ class HomeMain extends Component {
         this.fetchData();
     }
 
-    getCommentsForPost(commentList) {
-        let list = null;
-        if (commentList !== undefined) {
-            list = commentList.map((item, i) =>
-                <PostCommentView key={i} data={item} />
-            );
-        }
-
-        let commentDom = (
-            <div className="comment-body">
-                Comments - <Button bsStyle="link" onClick={this.handleEditModeChange}>Add New</Button> <br />
-                {list}
-            </div>
-        );
-
-        return (commentDom)
-    }
-
     render() {
 
         if (!this.state.error && this.state.categoryList.length === 0) {
@@ -124,7 +105,7 @@ class HomeMain extends Component {
                             key={'me' + i} detail={data}
                             readOnly={data.userName !== this.state.userName}
                             categoryList={this.state.categoryList} />
-                        {this.getCommentsForPost(data.comments)}
+                        <PostCommentList list={data.comments} userEmail={this.state.userName} postID={data.id} />
                         <hr key={'hr' + i} />
                     </div>
                 )}
