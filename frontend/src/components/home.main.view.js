@@ -4,7 +4,6 @@ import Alert from 'react-bootstrap/lib/Alert';
 import PostCommentList from './comment/post.comment.list';
 import { getUser } from '../helpers/cookie.helper';
 import { getCategoryList } from '../helpers/get.category.list';
-import classNames from 'classnames';
 
 class HomeMain extends Component {
     constructor(props) {
